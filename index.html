@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Bere</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #FFF9C4;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        h1 {
+            color: #880E4F;
+            margin-top: 20px;
+            margin-bottom: 5px;
+            font-size: 2.3em;
+            text-align: center;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+            padding: 0 10px;
+        }
+
+        p.subtitle {
+            color: #6D4C41;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            text-align: center;
+        }
+
+        .main-container {
+            display: grid;
+            grid-template-columns: 130px 240px 130px;
+            grid-template-areas: 
+                "r1 flores r2"
+                "r3 flores r4";
+            gap: 20px;
+            align-items: center;
+            justify-items: center;
+            max-width: 750px;
+            margin-top: 15px;
+        }
+
+        .bouquet-box {
+            grid-area: flores;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 230px;
+            height: 230px;
+        }
+
+        .bouquet-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 6px 12px rgba(0,0,0,0.3));
+            border-radius: 15px;
+        }
+
+        /* Estilo general del relicario */
+        .relicario {
+            width: 110px;
+            height: 110px;
+            cursor: pointer;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            filter: drop-shadow(0 6px 12px rgba(0,0,0,0.4));
+            border-radius: 50%;
+            overflow: hidden;
+            background: #ffffff;
+            border: 3px solid #d4af37;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .relicario:hover {
+            transform: scale(1.1);
+            filter: drop-shadow(0 8px 16px rgba(0,0,0,0.5));
+        }
+
+        .relicario img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        /* Estado inicial: Cerrado (muestra la tapita exterior) */
+        .relicario .foto-interior {
+            opacity: 0;
+        }
+
+        .relicario .foto-exterior {
+            opacity: 1;
+        }
+
+        /* Al abrirse: Se oculta la tapa exterior y aparece la foto interior */
+        .relicario.abierto .foto-exterior {
+            opacity: 0;
+        }
+
+        .relicario.abierto .foto-interior {
+            opacity: 1;
+        }
+
+        .r1 { grid-area: r1; }
+        .r2 { grid-area: r2; }
+        .r3 { grid-area: r3; }
+        .r4 { grid-area: r4; }
+
+        .footer-note {
+            margin-top: 20px;
+            font-size: 0.95em;
+            color: #5d4037;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Gracias 🫂 por ser mi amiga Bere</h1>
+    <p class="subtitle">Haz clic en cada relicario para abrirlo y ver el recuerdo.</p>
+
+    <div class="main-container">
+        <!-- Relicario 1 (Superior Izquierdo) -->
+        <div class="relicario r1" onclick="toggleRelicario(this)">
+            <img src="Captura de pantalla 2026-09-21 145648.png" alt="Tapa Relicario 1" class="foto-exterior">
+            <img src="Captura de pantalla 2026-09-21 135836.png" alt="Recuerdo Interior 1" class="foto-interior">
+        </div>
+
+        <!-- Ramo de flores en el centro -->
+        <div class="bouquet-box">
+            <img src="Captura de pantalla 2026-09-21 170100.png" alt="Ramo de flores amarillas">
+        </div>
+
+        <!-- Relicario 2 (Superior Derecho) -->
+        <div class="relicario r2" onclick="toggleRelicario(this)">
+            <img src="Captura de pantalla 2026-09-21 145717.png" alt="Tapa Relicario 2" class="foto-exterior">
+            <img src="Captura de pantalla 2026-09-21 135950.png" alt="Recuerdo Interior 2" class="foto-interior">
+        </div>
+
+        <!-- Relicario 3 (Inferior Izquierdo) -->
+        <div class="relicario r3" onclick="toggleRelicario(this)">
+            <img src="Captura de pantalla 2026-09-21 145728.png" alt="Tapa Relicario 3" class="foto-exterior">
+            <img src="Captura de pantalla 2026-09-21 140041.png" alt="Recuerdo Interior 3" class="foto-interior">
+        </div>
+
+        <!-- Relicario 4 (Inferior Derecho) -->
+        <div class="relicario r4" onclick="toggleRelicario(this)">
+            <img src="Captura de pantalla 2026-09-21 145745.png" alt="Tapa Relicario 4" class="foto-exterior">
+            <img src="Captura de pantalla 2026-09-21 140124.png" alt="Recuerdo Interior 4" class="foto-interior">
+        </div>
+    </div>
+
+    <div class="footer-note">Haz clic de nuevo sobre el relicario para volver a cerrarlo.</div>
+
+    <script>
+        function toggleRelicario(elemento) {
+            elemento.classList.toggle('abierto');
+        }
+    </script>
+
+</body>
+</html>
